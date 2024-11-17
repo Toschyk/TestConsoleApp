@@ -10,36 +10,49 @@ namespace TestConsoleApp
     {
         static void Main(string[] args)
         {
+            // Сообщаем пользователю, что необходимо ввести первое число
             Console.WriteLine("Введите первое число:");
-            double num1 = Convert.ToDouble(Console.ReadLine());
+            double num1 = Convert.ToDouble(Console.ReadLine()); // Читаем и преобразуем ввод пользователя в число
 
+            // Сообщаем пользователю, что необходимо выбрать операцию
             Console.WriteLine("Введите операцию (+, -, *, /):");
-            char operation = Convert.ToChar(Console.ReadLine());
+            char operation = Convert.ToChar(Console.ReadLine()); // Читаем символ операции
 
+            // Сообщаем пользователю, что необходимо ввести второе число
             Console.WriteLine("Введите второе число:");
-            double num2 = Convert.ToDouble(Console.ReadLine());
+            double num2 = Convert.ToDouble(Console.ReadLine()); // Читаем и преобразуем ввод пользователя в число
 
-            double result = 0;
+            double result = 0; // Переменная для хранения результата
 
+            // Используем конструкцию switch для выполнения операции в зависимости от введенного знака
             switch (operation)
             {
-                case '+':
+                case '+': // Если операция сложения
                     result = num1 + num2;
                     break;
-                case '-':
+                case '-': // Если операция вычитания
                     result = num1 - num2;
                     break;
-                case '*':
+                case '*': // Если операция умножения
                     result = num1 * num2;
                     break;
-                case '/':
-                    result = num1 / num2;
+                case '/': // Если операция деления
+                    if (num2 != 0) // Проверяем, что деление на ноль не производится
+                    {
+                        result = num1 / num2;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ошибка: Деление на ноль невозможно.");
+                        return; // Завершаем выполнение программы, если ошибка
+                    }
                     break;
-                default:
+                default: // Если введена некорректная операция
                     Console.WriteLine("Некорректная операция.");
-                    break;
+                    return; // Завершаем выполнение программы
             }
 
+            // Выводим результат пользователю
             Console.WriteLine($"Результат: {result}");
         }
     }
