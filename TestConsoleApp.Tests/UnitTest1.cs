@@ -1,16 +1,32 @@
+using NUnit.Framework;
+
 namespace TestConsoleApp.Tests
 {
-    public class Tests
+    public class CalculatorTests
     {
-        [SetUp]
-        public void Setup()
+        [TestCase(10, 5, '+', 15)]
+        [TestCase(10, 5, '-', 5)]
+        [TestCase(10, 5, '*', 50)]
+        [TestCase(10, 5, '/', 2)]
+        public void TestCalculator(double num1, double num2, char operation, double expected)
         {
+            double result = Calculator.Calculate(num1, num2, operation);
+            Assert.AreEqual(expected, result);
         }
+    }
 
-        [Test]
-        public void Test1()
+    public static class Calculator
+    {
+        public static double Calculate(double num1, double num2, char operation)
         {
-            Assert.Pass();
+            return operation switch
+            {
+                '+' => num1 + num2,
+                '-' => num1 - num2,
+                '*' => num1 * num2,
+                '/' => num2 != 0 ? num1 / num2 : throw new DivideByZeroException(),
+                _ => throw new InvalidOperationException("Invalid operation")
+            };
         }
     }
 }
