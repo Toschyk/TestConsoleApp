@@ -54,6 +54,7 @@ namespace TestConsoleApp
 
             // Выводим результат пользователю
             Console.WriteLine($"Результат: {result}");
+            Console.ReadLine();
         }
     }
 }
