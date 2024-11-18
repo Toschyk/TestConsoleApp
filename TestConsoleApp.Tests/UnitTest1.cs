@@ -13,7 +13,7 @@ namespace TestConsoleApp.Tests
         {
             // Вызываем метод Calculate и сравниваем результат с ожидаемым
             double result = Calculator.Calculate(num1, num2, operation);
-            Assert.AreEqual(expected, result, "Результат операции не соответствует ожидаемому.");
+            Assert.That(result, Is.EqualTo(expected), "Результат операции не соответствует ожидаемому.");
         }
 
         // Тестируем деление на ноль
